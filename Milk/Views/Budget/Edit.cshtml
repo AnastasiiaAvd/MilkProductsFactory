@@ -1,0 +1,46 @@
+﻿@model Milk.DataModels.BudgetDto
+
+@{
+    ViewBag.Title = "Редактирование бюджета";
+    var errorMessage = "";
+    if (TempData.ContainsKey("ErrorMessage"))
+    {
+        errorMessage = TempData["ErrorMessage"] as string;
+    }
+}
+
+<h2>Редактирование бюджета</h2>
+
+@using (Html.BeginForm("Edit", "Budget", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.BudgetId)
+    <div class="m-t">
+        <labal>Сумма бюджета</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Sum)
+        <div>
+            <span class="error-message">@Html.ValidationMessageFor(model => model.Sum)</span>
+        </div>
+    </div>
+
+    <div class="m-t">
+        <button type="submit" class="btn btn-info btn-def fa fa-floppy-o">Сохранить</button>
+    </div>
+
+}
+
+<script type="text/javascript">
+
+    var errorMessage = '@errorMessage';
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+        if (errorMessage != undefined && errorMessage != null && errorMessage.length >0)
+            $.gritter.add({
+                title: 'Предупреждение!',
+                text: errorMessage
+            });
+    });
+
+</script>

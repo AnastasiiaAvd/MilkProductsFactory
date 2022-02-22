@@ -1,0 +1,120 @@
+﻿@using System.Diagnostics.Eventing.Reader
+@using Microsoft.EntityFrameworkCore
+@model System.Collections.Generic.List<Milk.BLL.RawPurchaseDto>
+
+@{
+    ViewBag.Title = "Закупки сырья";
+    var errorMessage = "";
+    if (TempData.ContainsKey("ErrorMessage"))
+    {
+        errorMessage = TempData["ErrorMessage"] as string;
+    }
+}
+
+<h2>Закупки сырья</h2>
+
+<table class="table table-striped table-success table-bordered">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">Бюджет</th>
+            </tr>
+        </thead>
+        <tbody>
+        @{ var value = 0; }
+        @foreach (var plan in Model)
+        {
+             if (@value == 0)
+            {
+                <tr>
+                    <td class="text-center">@plan.BudgetSum</td>
+                </tr>
+                value = 1;
+            }
+            else
+             {
+                 break;
+             }
+        }
+        </tbody>
+    </table>
+
+<table class="table table-striped table-info table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center" scope="col">Id</th>
+            <th class="text-center" scope="col">Сырье</th>
+            <th class="text-center" scope="col">Количество</th>
+            <th class="text-center" scope="col">Сумма</th>
+            <th class="text-center" scope="col">Количество на складе</th>
+            <th class="text-center" scope="col">Дата</th>
+            <th class="text-center" scope="col">Сотрудник</th>
+            <th class="text-center" scope="col">Операция</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var rawPurchase in Model)
+        {
+            <tr>
+                <td class="text-center">@rawPurchase.RawPurchaseId</td>
+                <td>
+                    <a href="@Url.Action("Edit", "RawMaterial", new {rawMaterialId = rawPurchase.RawId })">
+                        @rawPurchase.RawName
+                    </a>
+                </td>
+                <td class="text-center">@rawPurchase.Amount</td>
+                <td class="text-center">@rawPurchase.Sum</td>
+                <td class="text-center">@rawPurchase.RawMaterialAmount</td>
+                <td class="text-center">@rawPurchase.Date</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Employee", new {employeeId = rawPurchase.EmployeeId })">
+                        @rawPurchase.EmployeeName
+                    </a>
+                </td>
+                <td class="text-center">
+                    <a href="@Url.Action("Remove", "RawPurchase", new {rawPurchaseId = rawPurchase.RawPurchaseId })">
+                        <i class="fa fa-times" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Удалить закупку сырья"></i>
+                    </a>
+                    <a class="m-l" href="@Url.Action("Edit", "RawPurchase", new {rawPurchaseId = rawPurchase.RawPurchaseId})">
+                        <i class="fa fa-edit" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Редактировать закупку сырья"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button type="button" class="btn btn-light btn-outline-info">
+    <a href="@Url.Action("Add", "RawPurchase")">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Добавить закупку сырья
+    </a>
+</button>
+
+<button type="button" class="btn btn-light btn-outline-info">
+    <a href="@Url.Action("GetAll", "RawMaterial")">
+        <i class="fa fa-flask" aria-hidden="true"></i>
+        Просмотреть сырье на складе
+    </a>
+</button>
+
+<button type="button" class="btn btn-light btn-outline-info">
+    <a href="@Url.Action("GetAll", "Position")">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        Просмотреть должности
+    </a>
+</button>
+
+<script type="text/javascript">
+
+    var errorMessage = '@errorMessage';
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+        if (errorMessage != undefined && errorMessage != null && errorMessage.length >0)
+            $.gritter.add({
+                title: 'Предупреждение!',
+                text: errorMessage
+            });
+    });
+
+</script>

@@ -1,0 +1,73 @@
+﻿@model Milk.DataModels.ProductSellDto
+
+@{
+    ViewBag.Title = "Редактирование продажи продукции";
+    var errorMessage = "";
+    if (TempData.ContainsKey("ErrorMessage"))
+    {
+        errorMessage = TempData["ErrorMessage"] as string;
+    }
+}
+
+<h2>Редактирование продажи продукции</h2>
+
+@using (Html.BeginForm("Edit", "ProductSell", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.ProductSellId)
+    <div class="m-t">
+        <labal>Наименование продукта</labal>
+    </div>
+    <div>
+        @Html.DropDownListFor(m => m.ProductId, new DropDownReference().GetProduct)
+    </div>
+
+    <div class="m-t">
+        <labal>Количество</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Amount)
+        <div>
+            <span class="error-message">@Html.ValidationMessageFor(model => model.Amount)</span>
+        </div>
+    </div>
+
+    @*<div class="m-t">
+        <labal>Сумма</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Sum)
+    </div>
+
+    <div class="m-t">
+        <labal>Дата</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Date)
+    </div>*@
+
+    <div class="m-t">
+        <labal>Сотрудник</labal>
+    </div>
+    <div>
+        @Html.DropDownListFor(m => m.EmployeeId, new DropDownReference().GetEmployee)
+    </div>
+
+    <div class="m-t">
+        <button type="submit" class="btn btn-info btn-def fa fa-floppy-o">Сохранить</button>
+    </div>
+}
+
+<script type="text/javascript">
+
+    var errorMessage = '@errorMessage';
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+        if (errorMessage != undefined && errorMessage != null && errorMessage.length >0)
+            $.gritter.add({
+                title: 'Предупреждение!',
+                text: errorMessage
+            });
+    });
+
+</script>

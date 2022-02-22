@@ -1,0 +1,124 @@
+﻿
+@model Milk.DataModels.LoanPaymentDto
+
+@{
+    ViewBag.Title = "Добавление выплаты";
+    var errorMessage = "";
+    if (TempData.ContainsKey("ErrorMessage"))
+    {
+        errorMessage = TempData["ErrorMessage"] as string;
+    }
+}
+
+<h2>Добавление выплаты за кредит</h2>
+
+
+@using (Html.BeginForm("AddLoanPayment", "LoanPayment", FormMethod.Post))
+{
+    <div class="m-t">
+        <labal>Номер кредита</labal>
+    </div>
+    <div>
+        @Html.DropDownListFor(m => m.CreditId, new DropDownReference().GetCredits)
+    </div>
+
+    <div class="m-t">
+        <labal>Номер выплаты</labal>
+    </div>
+    <div>
+        @Html.DropDownListFor(m => m.PayoutNumber, new List<SelectListItem>(), "---")
+    </div>
+
+    <div class="m-t">
+        <labal>Дата</labal>
+    </div>
+    <div>
+        @Html.EditorFor(m => m.ActualDate,
+new { htmlAttributes = new { @class = "form-control date-picker" } })
+    </div>
+
+    <div class="m-t">
+        <labal>Пеня</labal>
+    </div>
+    <div>
+       <span id="peny"></span>
+    </div>
+
+    <div class="m-t">
+        <button type="submit" class=" btn btn-info btn-def fa fa-floppy-o">Сохранить</button>
+    </div>
+}
+
+<script type="text/javascript">
+    var errorMessage = '@errorMessage';
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+        if (errorMessage != undefined && errorMessage != null && errorMessage.length >0)
+            $.gritter.add({
+                text: errorMessage
+            });
+    });
+    $(document).ready(function () {
+        $(".date-picker").datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+        $("#CreditId").change(function () {
+            updateRegions();
+            getPeny();
+        })
+        $("#PayoutNumber").change(function () {
+            getPeny();
+        })
+        $("#ActualDate").change(function () {
+            getPeny();
+        })
+        updateRegions();
+        getPeny();
+    });
+    function getPeny() {
+        $("#peny").empty(); //выбраный регион
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetPeny", "LoanPayment")',
+                    dataType: 'json',
+                    data: {
+                        CreditId: $("#CreditId").val(),
+                        PayoutNumber: $("#PayoutNumber").val(),
+                        ActualDate: $("#ActualDate").val(),
+                    }, //значение области
+                    success: function (mems) {
+                        $("#peny").text(mems);
+                    },
+                    error: function (ex) {
+                        console.log('Failed to retrieve states.' + ex);
+                    }
+                });
+                return false;
+    }
+    function updateRegions() {
+        $("#PayoutNumber").empty(); //выбраный регион
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetLoansByCredit", "LoanPayment")',
+                    dataType: 'json',
+                    data: { creditId: $("#CreditId").val() }, //значение области
+                    success: function (mems) {
+                        if (mems.length === 0) {
+                            $("#PayoutNumber").append('<option>---</option>');
+                            return;
+                        }
+                        $.each(mems, function (i, member) {
+
+                            $("#PayoutNumber").append('<option value="'
+                                + member + '">'
+                                + member + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        console.log('Failed to retrieve states.' + ex);
+                    }
+                });
+                return false;
+    }
+</script>

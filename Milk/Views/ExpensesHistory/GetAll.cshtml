@@ -1,0 +1,78 @@
+﻿@model System.Collections.Generic.List<Milk.DataModels.ExpensesHistoryDto>
+
+@{
+    ViewBag.Title = "History";
+    var errorMessage = "";
+    if (TempData.ContainsKey("ErrorMessage"))
+    {
+        errorMessage = TempData["ErrorMessage"] as string;
+    }
+}
+
+<h2>История выплат</h2>
+
+<table class="table table-striped table-info table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center" scope="col">Id</th>
+            <th class="text-center" scope="col">Описание выплаты</th>
+            <th class="text-center" scope="col">Сумма</th>
+            <th class="text-center" scope="col">Дата</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var history in Model)
+        {
+            <tr>
+                <td class="text-center">@history.HistoryId</td>
+                <td class="text-center">@history.Description</td>
+                <td class="text-center">@history.Sum</td>
+                <td class="text-center">@history.Date</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button type="button" class="btn btn-light btn-outline-info">
+    <a href="@Url.Action("GetAllPremiums", "ExpensesHistory")">
+        <i class="fa fa-external-link-square" aria-hidden="true"></i>
+       Просмотреть премии
+    </a>
+</button>
+
+<button type="button" class="btn btn-light btn-outline-info">
+    <a href="@Url.Action("GetAllTaxes", "ExpensesHistory")">
+        <i class="fa fa-external-link-square" aria-hidden="true"></i>
+        Просмотреть налоги
+    </a>
+</button>
+<div class="navbar p-1 m-0">
+        <div>
+            @Html.ActionLink("Выплатить зарплату", "PaySalary", "ExpensesHistory", new { area = "" }, new { @class = "btn btn-outline-info btn btn-light btn-def fa fa-check" })
+            @Html.ActionLink("Выплатить налоги", "PayTax", "ExpensesHistory", new { area = "" }, new { @class = "btn btn-outline-info btn btn-light btn-def fa fa-check" })
+            @Html.ActionLink("Выплатить аренду", "PayRent", "ExpensesHistory", new { area = "" }, new { @class = "btn btn-outline-info btn btn-light btn-def fa fa-check" })
+        </div>
+</div>
+
+<script type="text/javascript">
+
+    var errorMessage = '@errorMessage';
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+        if (errorMessage != undefined && errorMessage != null && errorMessage.length >0)
+            $.gritter.add({
+                title: 'Сообщение!',
+                text: errorMessage
+            });
+    });
+
+</script>
+
+<button type="button" class="btn btn-light btn-outline-info">
+
+    <a href="@Url.Action("Report", "ExpensesHistory")">
+        <i class="fa fa-print" aria-hidden="true"></i>
+        Просмотреть отчет
+    </a>
+</button>

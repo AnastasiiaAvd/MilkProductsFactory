@@ -1,0 +1,34 @@
+﻿@model Milk.DataModels.CreditDto
+
+@{
+    ViewBag.Title = "Добавление ";
+}
+
+<h2>Добавление кредита</h2>
+
+@using (Html.BeginForm("Add", "Credit", FormMethod.Post))
+{
+    <div class="m-t">
+        <labal>Сумма кредита</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.CreditAmount)
+    </div>
+
+    <div class="m-t">
+        <labal>Процентная ставка</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.CreditRate)
+    </div>
+
+    <div class="m-t">
+        <labal>Срок в месяцах</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Term)
+    </div>
+    <div class="m-t">
+        <button type="submit" class=" btn btn-info btn-def fa fa-floppy-o">Сохранить</button>
+    </div>
+}

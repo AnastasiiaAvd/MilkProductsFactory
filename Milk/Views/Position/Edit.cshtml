@@ -1,0 +1,25 @@
+﻿@model Milk.DataModels.PossitionDto
+
+@{
+    ViewBag.Title = "Редактирование должности";
+}
+
+<h2>Редактирование должности</h2>
+
+@using (Html.BeginForm("Edit", "Position", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.PositionId)
+    <div class="m-t">
+        <labal>Имя</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.PosotionName)
+        <div>
+            <span class="error-message">@Html.ValidationMessageFor(model => model.PosotionName)</span>
+        </div>
+    </div>
+
+    <div class="m-t">
+        <button type="submit" class="btn btn-info btn-def fa fa-floppy-o">Сохранить</button>
+    </div>
+}

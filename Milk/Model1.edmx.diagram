@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2202c075da4c4cf1b3368a149181ad87" Name="Diagram1">
+        <EntityTypeShape EntityType="MilkProductsModel.Budgets" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.Credit" Width="1.5" PointX="7.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.Employees" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.ExpensesHistory" Width="1.5" PointX="9.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.Ingredients" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.LoanPayment" Width="1.5" PointX="9.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.Positions" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.Premium" Width="1.5" PointX="10.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.Production" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.Products" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.productSells" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.RawMaterials" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.rawPurchases" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.sysdiagrams" Width="1.5" PointX="11.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.Taxes" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.Units" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilkProductsModel.ViewSum" Width="1.5" PointX="11.75" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="MilkProductsModel.FK_Employees_Positions" ManuallyRouted="false" />
+        <AssociationConnector Association="MilkProductsModel.FK_Production_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="MilkProductsModel.FK_productSells_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="MilkProductsModel.FK_rawPurchases_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="MilkProductsModel.FK_Ingredients_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="MilkProductsModel.FK_Ingredients_RawMaterials" ManuallyRouted="false" />
+        <AssociationConnector Association="MilkProductsModel.FK_Production_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="MilkProductsModel.FK_Products_Units1" ManuallyRouted="false" />
+        <AssociationConnector Association="MilkProductsModel.FK_productSells_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="MilkProductsModel.FK_RawMaterials_Units" ManuallyRouted="false" />
+        <AssociationConnector Association="MilkProductsModel.FK_rawPurchases_RawMaterials" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

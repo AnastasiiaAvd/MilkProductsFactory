@@ -1,0 +1,164 @@
+﻿@using System.Web.UI.WebControls
+@{
+    ViewBag.Title = "Milky Products";
+}
+
+<table class="table table-striped table-info table-bordered">
+    <thead>
+    <tr>
+        <th class="text-center" scope="col">Таблицы</th>
+        <th class="text-center" scope="col">Взаимодействие</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <i class="fa fa-users" aria-hidden="true"></i>
+                Сотрудники
+            </td>
+            <td class="text-center">
+                <a href="@Url.Action("GetAll", "Employee")">
+                    <i class="fa fa-folder-open" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Просмотреть сотрудников"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i class="fa fa-user" aria-hidden="true"></i>
+                Должности
+            </td>
+            <td class="text-center">
+
+                <a href="@Url.Action("GetAll", "Position")">
+                    <i class="fa fa-folder-open" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Просмотреть должности"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i class="fa fa-sitemap" aria-hidden="true"></i>
+                Единицы измерения
+            </td>
+            <td class="text-center">
+
+                <a href="@Url.Action("GetAll", "Unit")">
+                    <i class="fa fa-folder-open" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Просмотреть единицы измерения"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i class="fa fa-flask" aria-hidden="true"></i>
+                Сырье на складе
+            </td>
+            <td class="text-center">
+
+                <a href="@Url.Action("GetAll", "RawMaterial")">
+                    <i class="fa fa-folder-open" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Просмотреть сырье"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                Закупки сырья
+            </td>
+            <td class="text-center">
+
+                <a href="@Url.Action("GetAll", "RawPurchase")">
+                    <i class="fa fa-folder-open" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Просмотреть закупки сырья"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i class="fa fa-lemon-o" aria-hidden="true"></i>
+                Продукция на складе
+            </td>
+            <td class="text-center">
+
+                <a href="@Url.Action("GetAll", "Product")">
+                    <i class="fa fa-folder-open" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Просмотреть продукцию"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i class="fa fa-list-ol" aria-hidden="true"></i>
+                Ингредиенты
+            </td>
+            <td class="text-center">
+
+                <a href="@Url.Action("GetAll", "Ingredient")">
+                    <i class="fa fa-folder-open" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Просмотреть ингредиенты"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <i class="fa fa-building-o" aria-hidden="true"></i>
+                Производства
+            </td>
+            <td class="text-center">
+
+                <a href="@Url.Action("GetAll", "Production")">
+                    <i class="fa fa-folder-open" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Просмотреть производство"></i>
+                </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <i class="fa fa-money" aria-hidden="true"></i>
+                Продажи продукции
+            </td>
+            <td class="text-center">
+
+                <a href="@Url.Action("GetAll", "ProductSell")">
+                    <i class="fa fa-folder-open" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Просмотреть продажи продукции"></i>
+                </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <i class="fa fa-credit-card" aria-hidden="true"></i>
+                Бюждет
+            </td>
+            <td class="text-center">
+
+                <a href="@Url.Action("GetAll", "Budget")">
+                    <i class="fa fa-folder-open" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Просмотреть бюджет"></i>
+                </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <i class="fa fa-usd" aria-hidden="true"></i>
+                Выплаты
+            </td>
+            <td class="text-center">
+
+                <a href="@Url.Action("GetAll", "ExpensesHistory")">
+                    <i class="fa fa-folder-open" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Просмотреть выплаты"></i>
+                </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <i class="fa fa-usd" aria-hidden="true"></i>
+                Кредиты
+            </td>
+            <td class="text-center">
+
+                <a href="@Url.Action("GetAll", "Credit")">
+                    <i class="fa fa-folder-open" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Просмотреть выплаты"></i>
+                </a>
+            </td>
+        </tr>
+
+    </tbody>
+</table>

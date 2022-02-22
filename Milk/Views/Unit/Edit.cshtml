@@ -1,0 +1,25 @@
+﻿@model Milk.DataModels.UnitDto
+
+@{
+    ViewBag.Title = "Редактирование единицы измерения";
+}
+
+<h2>Редактирование единицы измерения</h2>
+
+@using (Html.BeginForm("Edit", "Unit", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.UnitId)
+    <div class="m-t">
+        <labal>Имя</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.UnitName)
+        <div>
+            <span class="error-message">@Html.ValidationMessageFor(model => model.UnitName)</span>
+        </div>
+    </div>
+
+    <div class="m-t">
+        <button type="submit" class="btn btn-info btn-def fa fa-floppy-o">Сохранить</button>
+    </div>
+}

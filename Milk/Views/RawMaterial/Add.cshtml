@@ -1,0 +1,82 @@
+﻿@model Milk.DataModels.RawMaterialDto
+
+@{
+    ViewBag.Title = "Добавление сырья";
+    var errorMessage = "";
+    if (TempData.ContainsKey("ErrorMessage"))
+    {
+        errorMessage = TempData["ErrorMessage"] as string;
+    }
+}
+
+<h2>Добавление сырья</h2>
+
+
+@using (Html.BeginForm("Add", "RawMaterial", FormMethod.Post))
+{
+    <div class="m-t">
+        <labal>Наименование</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.RawName)
+        <div>
+            <span class="error-message">@Html.ValidationMessageFor(model => model.RawName)</span>
+        </div>
+    </div>
+
+    <div class="m-t">
+        <labal>Единица измерения</labal>
+    </div>
+    <div>
+        @Html.DropDownListFor(m => m.UnitId, new DropDownReference().GetUnit)
+    </div>
+
+    <div class="m-t">
+        <labal>Сумма</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Sum)
+        <div>
+            <span class="error-message">@Html.ValidationMessageFor(model => model.Sum)</span>
+        </div>
+    </div>
+
+    <div class="m-t">
+        <labal>Количество</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Amount)
+        <div>
+            <span class="error-message">@Html.ValidationMessageFor(model => model.Amount)</span>
+        </div>
+    </div>
+
+    <div class="m-t">
+        <labal>Наценка</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Cost)
+        <div>
+            <span class="error-message">@Html.ValidationMessageFor(model => model.Cost)</span>
+        </div>
+    </div>
+
+    <div class="m-t">
+        <button type="submit" class="btn btn-info btn-def fa fa-floppy-o">Сохранить</button>
+    </div>
+}
+
+<script type="text/javascript">
+
+    var errorMessage = '@errorMessage';
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+        if (errorMessage != undefined && errorMessage != null && errorMessage.length >0)
+            $.gritter.add({
+                title: 'Предупреждение!',
+                text: errorMessage
+            });
+    });
+
+</script>

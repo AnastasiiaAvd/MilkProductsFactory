@@ -1,0 +1,43 @@
+﻿@model System.Collections.Generic.List<Milk.DataModels.PremiumDto>
+
+@{
+    ViewBag.Title = "Premiums";
+}
+
+<h2>Премиальные сотрудников</h2>
+
+<table class="table table-striped table-info table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center" scope="col">ID премии</th>
+            <th class="text-center" scope="col">ID продажи</th>
+            <th class="text-center" scope="col">Продукция</th>
+            <th class="text-center" scope="col">Сотрудник</th>
+            <th class="text-center" scope="col">Перемия</th>
+            <th class="text-center" scope="col">Общая сумма</th>
+            <th class="text-center" scope="col">Выплачено</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var premium in Model)
+        {
+        <tr>
+            <td class="text-center">@premium.PremiumId</td>
+            <td class="text-center">@premium.ProductSellId</td>
+            <td class="text-center">@premium.Product</td>
+            <td class="text-center">@premium.EmployeeName</td>
+            <td class="text-center">@premium.Premium</td>
+            <td class="text-center">@premium.Sum</td>
+            <td class="text-center">@premium.IsPaid</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<button type="button" class="btn btn-light btn-outline-info">
+    <a href="@Url.Action("GetAll", "ExpensesHistory")">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        Назад
+    </a>
+</button>
+

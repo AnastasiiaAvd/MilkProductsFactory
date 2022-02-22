@@ -1,0 +1,88 @@
+﻿@model System.Collections.Generic.List<Milk.DataModels.EmployeeDto>
+
+@{
+    ViewBag.Title = "Сотрудники";
+    var errorMessage = "";
+    if (TempData.ContainsKey("ErrorMessage"))
+    {
+        errorMessage = TempData["ErrorMessage"] as string;
+    }
+
+}
+
+<h2>Сотрудники</h2>
+
+
+
+<table class="table table-striped table-info table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center" scope="col">Id</th>
+            <th class="text-center" scope="col">Имя</th>
+            <th class="text-center" scope="col">Должность</th>
+            <th class="text-center" scope="col">Заработная плата</th>
+            <th class="text-center" scope="col">Адрес</th>
+            <th class="text-center" scope="col">Номер телефона</th>
+            <th class="text-center" scope="col">Операция</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td class="text-center">@employee.EmployeeId</td>
+                <td class="text-center">@employee.EmployeeName</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Position", new {positionId = @employee.PositionId })">
+                        @employee.PosotionName
+                    </a>
+                </td>
+                <td class="text-center">@employee.Salary</td>
+                <td class="text-center">@employee.Address</td>
+                <td>@employee.PhoneNumber</td>
+                <td class="text-center">
+                    <a href="@Url.Action("Remove", "Employee", new {employeeId = employee.EmployeeId })">
+                        <i class="fa fa-times" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Удалить сотрудника"></i>
+                    </a>
+                    <a class="m-l" href="@Url.Action("Edit", "Employee", new {employeeId = employee.EmployeeId})">
+                        <i class="fa fa-edit" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Редактировать сотрудника"></i>
+                    </a>
+                    <a class="m-l" href="@Url.Action("PaySalary", "Budget", new {employeeId = employee.EmployeeId})">
+                        <i class="fa fa-money" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Выплатить зарплату"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button type="button" class="btn btn-light btn-outline-info">
+    <a href="@Url.Action("Add", "Employee")">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Добавить сотрудника
+    </a>
+</button>
+
+<button type="button" class="btn btn-light btn-outline-info">
+    <a href="@Url.Action("GetAll", "Position")">
+        <i class="fa fa-user"  aria-hidden="true"></i>
+        Просмотреть должности
+    </a>
+</button>
+
+
+<script type="text/javascript">
+
+    var errorMessage = '@errorMessage';
+    
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+        if (errorMessage != undefined && errorMessage != null && errorMessage.length >0)
+            $.gritter.add({
+                text: errorMessage
+            });
+    });
+
+</script>
+
+

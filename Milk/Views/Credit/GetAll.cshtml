@@ -1,0 +1,46 @@
+﻿@model System.Collections.Generic.List<Milk.DataModels.CreditDto>
+
+@{
+    ViewBag.Title = "credit";
+}
+
+<h2>Кредиты</h2>
+
+<table class="table table-striped table-info table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center" scope="col">Id</th>
+            <th class="text-center" scope="col">Сумма кредита</th>
+            <th class="text-center" scope="col">Процент</th>
+            <th class="text-center" scope="col">Срок</th>
+            <th class="text-center" scope="col">Дата выдачи</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var credit in Model)
+        {
+            <tr>
+                <td class="text-center">@credit.CreditId</td>
+                <td class="text-center">@credit.CreditAmount</td>
+                <td class="text-center">@credit.CreditRate</td>
+                <td class="text-center">@credit.Term</td>
+                <td class="text-center">@credit.DateOfTaking</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button type="button" class="btn btn-light btn-outline-info">
+    <a href="@Url.Action("GetAll", "LoanPayment")">
+        <i class="fa fa-money" aria-hidden="true"></i>
+       Вылаты по кредитам
+    </a>
+</button>
+<button type="button" class="btn btn-light btn-outline-info">
+    <a href="@Url.Action("Add", "Credit")">
+        <i class="fa fa-edit" aria-hidden="true"></i>
+        Оформить кредит
+    </a>
+</button>
+
+

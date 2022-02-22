@@ -1,0 +1,31 @@
+﻿@model System.Collections.Generic.List<Milk.DataModels.BudgetDto>
+
+@{
+    ViewBag.Title = "Бюджет";
+}
+
+<h2>Бюджет</h2>
+
+<table class="table table-striped table-info table-bordered">
+    <thead>
+    <tr>
+        <th class="text-center" scope="col">Id</th>
+        <th class="text-center" scope="col">Сумма бюджета</th>
+        <th class="text-center" scope="col">Операция</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var budget in Model)
+    {
+        <tr>
+            <td class="text-center">@budget.BudgetId</td>
+            <td class="text-center">@budget.Sum</td>
+            <td class="text-center">
+                <a class="m-l" href="@Url.Action("Edit", "Budget", new {budgetId =budget.BudgetId })">
+                    <i class="fa fa-edit" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Редактировать сумму бюджета"></i>
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

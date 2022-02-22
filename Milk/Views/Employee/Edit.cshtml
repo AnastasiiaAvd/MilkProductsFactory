@@ -1,0 +1,56 @@
+﻿@model Milk.DataModels.EmployeeDto
+
+@{
+    ViewBag.Title = "Редактирование сотрудника";
+}
+
+<h2>Редактирование сотрудника</h2>
+
+@using (Html.BeginForm("Edit", "Employee", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.EmployeeId)
+    <div class="m-t">
+        <labal>Имя</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.EmployeeName)
+    </div>
+
+    <div class="m-t">
+        <labal>Должности</labal>
+    </div>
+    <div>
+        @Html.DropDownListFor(m => m.PositionId, new DropDownReference().GetPositions)
+    </div>
+
+    <div class="m-t">
+        <labal>Заработная плата</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Salary)
+        <div>
+            <span class="error-message">@Html.ValidationMessageFor(model => model.Salary)</span>
+        </div>
+    </div>
+
+    <div class="m-t">
+        <labal>Адрес</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Address)
+    </div>
+
+    <div class="m-t">
+        <labal>Номер телефона</labal>
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.PhoneNumber)
+        <div>
+            <span class="error-message">@Html.ValidationMessageFor(model => model.PhoneNumber)</span>
+        </div>
+    </div>
+
+    <div class="m-t">
+        <button type="submit" class="btn btn-info btn-def fa fa-floppy-o">Сохранить</button>
+    </div>
+}
